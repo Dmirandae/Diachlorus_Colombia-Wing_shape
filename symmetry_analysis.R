@@ -1,6 +1,6 @@
 ## Ambrosio Torres & Daniel Rafael Miranda-Esquivel (Laboratorio de Sistemática y Biogeografía, Universidad Industrial de Santander, Bucaramanga, Colombia)
-## Research: Geometric wing variation in the taxonomic recognition of species of the genus Diachlorus Osten-Sacken (Diptera: Tabanidae) from Colombia
-## Part: Analysis of symmetry of wing in genus Diachlorus in Colombia
+## Research: Wing shape variation in the taxonomic recognition of species of Diachlorus Osten-Sacken (Diptera: Tabanidae) from Colombia
+## Part: Analysis of directional asymmetry of wing in genus Diachlorus from Colombia
 ## 23th January 2015
 ## R version 3.1.2 & Rstudio 0.97.551 
 
