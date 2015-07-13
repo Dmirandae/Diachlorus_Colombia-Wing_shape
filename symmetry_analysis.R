@@ -1,22 +1,22 @@
 ## Ambrosio Torres & Daniel Rafael Miranda-Esquivel (Laboratorio de Sistemática y Biogeografía, Universidad Industrial de Santander, Bucaramanga, Colombia)
 ## Research: Wing shape variation in the taxonomic recognition of species of Diachlorus Osten-Sacken (Diptera: Tabanidae) from Colombia
 ## Part: Analysis of directional asymmetry of wing in genus Diachlorus from Colombia
-## 23th January 2015
+## 13th July 2015
 ## R version 3.1.2 & Rstudio 0.97.551 
 
 library (geomorph) ## Load 'geomorph' package v. 2.1.1 ---  http://cran.r-project.org/web/packages/geomorph/index.html
 library (shapes) ## Load 'shapes' package v. 1.1-9 --- http://cran.r-project.org/web/packages/shapes/index.html
 
 #  D. curvipes
-curvi_sim<- readland.tps("iz_der_curvi.tps", specID = "ID", warnmsg = T) ## load the data of the .tps file for the species D. curvipes for both, right and left wing
-curvi_sim_gpa <- gpagen(curvi_sim) ## make generalized procrustes analysis
+curvi_sim<- readland.tps("iz_der_curvi.tps", specID = "ID", warnmsg = T) ## Load the data of the .tps file for the species D. curvipes for both, right and left wing
+curvi_sim_gpa <- gpagen(curvi_sim) ## Make generalized procrustes analysis
 pca_curvi_sim <- plotTangentSpace(curvi_sim_gpa$coords, label=NULL, verbose =T, warpgrids=F) ## PCA for geometric shape based on aligned configurations of landmarks
-curvi_sim_der<- readland.tps("derecha_curvipes.tps", specID = "ID", warnmsg = T) ## load the data of the .tps file for the species D. curvipes for rigth wing 
-curvi_sim_izq<- readland.tps("izquierda_curvipes.tps", specID = "ID", warnmsg = T) ## load the data of the .tps file for the species D. curvipes for left wing
-curvi_sim__der_gpa <- gpagen(curvi_sim_der) ## make generalized procrustes analysis right wing
-curvi_sim__izq_gpa <- gpagen(curvi_sim_izq) ## make generalized procrustes analysis left wing
-mshape_der_curvi<- mshape(curvi_sim__der_gpa$coords) ## calculate consensus shape for right wing
-mshape_izq_curvi<- mshape(curvi_sim__izq_gpa$coords) ## calculate consensus shape for left wing
+curvi_sim_der<- readland.tps("derecha_curvipes.tps", specID = "ID", warnmsg = T) ## Load the data of the .tps file for the species D. curvipes for rigth wing 
+curvi_sim_izq<- readland.tps("izquierda_curvipes.tps", specID = "ID", warnmsg = T) ## Load the data of the .tps file for the species D. curvipes for left wing
+curvi_sim__der_gpa <- gpagen(curvi_sim_der) ## Make generalized procrustes analysis right wing
+curvi_sim__izq_gpa <- gpagen(curvi_sim_izq) ## Make generalized procrustes analysis left wing
+mshape_der_curvi<- mshape(curvi_sim__der_gpa$coords) ## Calculate consensus shape for right wing
+mshape_izq_curvi<- mshape(curvi_sim__izq_gpa$coords) ## Calculate consensus shape for left wing
 riemdist(mshape_der_curvi, mshape_izq_curvi) ## Riemmanian distances between right and left wing shapes
 # 0.005972782
 testmeanshapes(curvi_sim__der_gpa$coords, curvi_sim__izq_gpa$coords, resamples = 1000, replace = FALSE, scale= TRUE) ## Goodall's F test to shapes 
