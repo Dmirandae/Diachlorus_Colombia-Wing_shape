@@ -2,7 +2,7 @@
 ## Research: Wing shape variation in the taxonomic recognition of species of Diachlorus Osten-Sacken (Diptera: Tabanidae) from Colombia
 ## Part: interspecific variation of genus Diachlorus
 ## R version 3.1.2 & Rstudio 0.97.551
-## 27th January 2015 
+## 13th July 2015 
 
 ######################################################################################################################################################################################
 ######################################################################################################################################################################################
@@ -42,7 +42,7 @@ d_nuneztovari <- readmulti.nts(list_nune)    ## Build an array/object which cont
 
 ######################################################################################################################################################################################
 ######################################################################################################################################################################################
-## 3. CREATE A DIRECTORY TO PUT THE RESULTS IN A DIFERENT DIRECTORY - NOT IN THE DIRECTORY OF TE DATA (INPUT)
+## 3. CREATE A DIRECTORY TO PUT THE RESULTS IN A DIFERENT PLACE - NOT IN THE DIRECTORY OF THE DATA (INPUT)
 
 namedir <- paste("interspecific_results_", date(),  sep="") ## Create a name to the new directory
 dir.create(namedir, showWarnings = FALSE)                   ## Create the new directory 
@@ -95,7 +95,7 @@ pca_diachlorus <- plotTangentSpace(alg_diachlorus, label=NULL, verbose =T, group
 label <- list(expression(italic('D. curvipes')), expression(italic('D. fuscistigma')), expression(italic('D. jobbinsi')), 
               expression(italic('D. leucotibialis')), expression(italic('D. nuneztovari')), expression(italic('D. leticia'))) ## Label to the plot 
 a <- cbind(pca_diachlorus$pc.scores, factors_diachlorus)                                                                      ## Attach the factor for the names to the data 
-a <- data.frame(a) ## Convert class of a to data frame
+a <- data.frame(a) ## Convert class of 'a' to data frame
 a$factors_diachlorus <- as.factor(a$factors_diachlorus)
 ### Define the ellipses to the groups (95%)
 df_ell <- data.frame()
@@ -118,7 +118,7 @@ dev.off()
 ## 6. Hierarchical clustering
 
 datavalores <- data.frame(pca_diachlorus$pc.scores)                                ## Make a data frame using the scores of the PCA
-distvalores <- dist(datavalores)                                                   ## Make a distance matrix of "datavalores"
+distvalores <- dist(datavalores)                                                   ## Make a distance matrix of 'datavalores'
 clust_valores <- hclust(distvalores)                                               ## Perform the hierarquical cluster
 labelColors <- c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33") ## Define the color of the leaves of the dendrogram
 clusMember <- rep(1,length(rownames(datavalores)))
@@ -149,7 +149,7 @@ dev.off()
 ## 7. Define the number of clusters using model-based clustering, "Gap" statistic and Calinski-Harabasz criterion
 
 ### Model-based clustering
-new_pcs_diachlorus <- subset (pca_diachlorus$pc.scores, select = c(PC1, PC2, PC3, PC4, PC5, PC6, PC7, PC8)) ## Make a data using the first eight components
+new_pcs_diachlorus <- subset (pca_diachlorus$pc.scores, select = c(PC1, PC2, PC3, PC4, PC5, PC6, PC7, PC8))      ## Make a sub-dataset using the first eight components
 best_model_diachlorus <- Mclust(new_pcs_diachlorus, G=1:7)                                                       ## Perform model clustering
 summary(best_model_diachlorus)                                                                                   ## See the results of the model-based clustering
   
@@ -160,7 +160,7 @@ dev.off()
 
 ### "Gap" statistic
 gap_diachlorus <- clusGap(new_pcs_diachlorus, kmeans, 7, B = 1000, verbose = interactive())                     ## Perform the gap statistic
-gap_diachlorus                                                                                                   ## See the results
+gap_diachlorus                                                                                                  ## See the results
 
 pdf(file="gap_diachlorus.pdf", width = 10, height = 6)            
 plot(gap_diachlorus)
@@ -168,7 +168,7 @@ dev.off()
 
 ### Calinski-Harabasz criterion
 fit <- cascadeKM(scale(new_pcs_diachlorus, center = TRUE,  scale = TRUE), 1, 7, iter = 1000)                    ## Perform analysis using Calinski-Harabasz criterion
-fit$results                                                                                                      ## See the results
+fit$results                                                                                                     ## See the results
 
 pdf(file="calinski_diachlorus.pdf", width = 10, height = 6)            
 plot(fit, sortg = TRUE, grpmts.plot = TRUE)
