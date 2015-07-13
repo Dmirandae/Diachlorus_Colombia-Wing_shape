@@ -2,7 +2,7 @@
 ## Research: Wing shape variation in the taxonomic recognition of species of Diachlorus Osten-Sacken (Diptera: Tabanidae) from Colombia
 ## Part: intraspecific variation of genus Diachlorus
 ## R version 3.1.2 & Rstudio 0.97.551
-## 28th January 2015 
+## 13th July 2015 
 
 ######################################################################################################################################################################################
 ######################################################################################################################################################################################
@@ -79,7 +79,7 @@ vdt <- readmulti.nts(list_vdt)               ## Build an array/object which cont
 
 ######################################################################################################################################################################################
 ######################################################################################################################################################################################
-## 3. CREATE A DIRECTORY TO PUT THE RESULTS IN A DIFERENT DIRECTORY - NOT IN THE DIRECTORY OF TE DATA (INPUT)
+## 3. CREATE A DIRECTORY TO PUT THE RESULTS IN A DIFERENT PLACE - NOT IN THE DIRECTORY OF THE DATA (INPUT)
 
 namedir <- paste("intraspecific_results_", date(),  sep="") ## Create a name to the new directory
 dir.create(namedir, showWarnings = FALSE)                   ## Create the new directory 
@@ -167,7 +167,7 @@ for (i in (rep(c(0,1,2,3,4,5,6,7,8,9),5))) {
 }
 factors_d_fusci<-factor(factors_d_fusci)
 pca_d_fuscistigma <- plotTangentSpace(alg_d_fuscistigma, label=NULL, verbose =T, groups = factors_d_fusci, warpgrids=F) ## Perform PCA of Diachlorus curvipes
-## Diachlorus fuscistigma PCA maked in ggplot2
+## Diachlorus fuscistigma PCA plotted in ggplot2
 label_df <- list(expression('Amazonas'), expression('Caquetá'), expression('Meta'), expression('Putumayo'), expression('Vaupés') ) 
 a<- cbind(pca_d_fuscistigma$pc.scores, factors_d_fusci)
 a<-data.frame(a)
@@ -194,7 +194,7 @@ for (i in (rep(c(0,1,2,3,4,5,6,7,8,9),5))) {
 }
 factors_d_jobi<-factor(factors_d_jobi)
 pca_d_jobbinsi <- plotTangentSpace(alg_d_jobbinsi, label=NULL, verbose =T, groups = factors_d_jobi, warpgrids=F) ## Perform PCA of Diachlorus curvipes
-## Diachlorus jobbinsi PCA maked in ggplot2
+## Diachlorus jobbinsi PCA plotted in ggplot2
 label_dj <- list(expression('Amazonas'), expression('Caquetá'), expression('Chocó'), expression('Putumayo')) 
 a<- cbind(pca_d_jobbinsi$pc.scores, factors_d_jobi)
 a<-data.frame(a)
@@ -214,14 +214,14 @@ pdf(file="pca_d_jobbinsi_ggplot2.pdf", width = 10, height = 6)
 p_jobi + theme(axis.text=element_text(size=14), axis.title=element_text(size=16)) + theme(legend.text = element_text(size = 14)) + theme(legend.title = element_text(size=16))
 dev.off()
 
-### creating a factor to color and recognize the Diachlorus leucotibialis from each national natural park to do a PCA 
+### Creating a factor to color and recognize the Diachlorus leucotibialis from each national natural park to do a PCA 
 factors_d_leuco <-sub(".nts", "", list_leuco)
 for (i in (rep(c(0,1,2,3,4,5,6,7,8,9),5))) {
   factors_d_leuco <-sub(i, "", factors_d_leuco)
 }
 factors_d_leuco<-factor(factors_d_leuco)
 pca_d_leucotibialis <- plotTangentSpace(alg_d_leucotibialis, label=NULL, verbose =T, groups = factors_d_leuco, warpgrids=F)
-## Diachlorus leucotibialis PCA maked in ggplot2
+## Diachlorus leucotibialis PCA plotted in ggplot2
 label_dl <- list(expression('Amazonas'), expression('Caquetá'), expression('Putumayo')) 
 a<- cbind(pca_d_leucotibialis$pc.scores, factors_d_leuco)
 a<-data.frame(a)
@@ -241,14 +241,14 @@ pdf(file="pca_d_leucotibialis_ggplot2.pdf", width = 10, height = 6)
 p_leuco + theme(axis.text=element_text(size=14), axis.title=element_text(size=16)) + theme(legend.text = element_text(size = 14)) + theme(legend.title = element_text(size=16))
 dev.off()
 
-### creating a factor to color and recognize the Diachlorus nuneztovari from each national natural park to do a PCA 
+### Creating a factor to color and recognize the Diachlorus nuneztovari from each national natural park to do a PCA 
 factors_d_nune <-sub(".nts", "", list_nune)
 for (i in (rep(c(0,1,2,3,4,5,6,7,8,9),5))) {
   factors_d_nune <-sub(i, "", factors_d_nune)
 }
 factors_d_nune<-factor(factors_d_nune)
 pca_d_nuneztovari <- plotTangentSpace(alg_d_nuneztovari, label=NULL, verbose =T, groups = factors_d_nune, warpgrids=F)
-## Diachlorus nuneztovari PCA maked in ggplot2
+## Diachlorus nuneztovari PCA plotted in ggplot2
 label_dm <- list(expression('Amazonas'), expression('Putumayo'))   
 a<- cbind(pca_d_nuneztovari$pc.scores, factors_d_nune)
 a<-data.frame(a)
